@@ -12,7 +12,7 @@ namespace :cachetool do
     on release_roles(fetch(:cachetool_roles)) do
       within shared_path do
         unless test "[", "-e", "cachetool.phar", "]"
-          execute :curl, "-s", fetch(:cachetool_download_url)
+          execute :curl, "-sO", fetch(:cachetool_download_url)
         end
       end
     end
