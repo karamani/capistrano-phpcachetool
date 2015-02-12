@@ -18,6 +18,15 @@ Or install it yourself as:
 
 ## Usage
 
+## Configuration
+
+```ruby
+set :cachetool_reset_flags, '--fcgi'
+set :cachetool_roles, :all
+set :cachetool_lib, :all
+set :cachetool_working_dir, -> { fetch(:release_path) }
+set :cachetool_download_url, "http://gordalina.github.io/cachetool/downloads/cachetool.phar"
+```
 
 ## Contributing
 
