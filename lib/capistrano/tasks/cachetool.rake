@@ -28,9 +28,10 @@ namespace :cachetool do
   end
 
   task :reset do
-    if fetch(:cachetool_lib) == :apc
+    if [:all, :apc].include? fetch(:cachetool_lib)
       invoke "cachetool:run", "apc:cache:clear all", fetch(:cachetool_reset_flags)
-    else
+    end
+    if [:all, :opcache].include? fetch(:cachetool_lib)
       invoke "cachetool:run", "opcache:reset", fetch(:cachetool_reset_flags)
     end
   end
@@ -42,7 +43,7 @@ namespace :load do
   task :defaults do
     set :cachetool_reset_flags, '--fcgi'
     set :cachetool_roles, :all
-    set :cachetool_lib, :opcache
+    set :cachetool_lib, :all
     set :cachetool_working_dir, -> { fetch(:release_path) }
     set :cachetool_download_url, "http://gordalina.github.io/cachetool/downloads/cachetool.phar"
   end
