@@ -29,10 +29,11 @@ namespace :cachetool do
 
   task :reset do
     if [:all, :apc].include? fetch(:cachetool_lib)
-      invoke "cachetool:run", "apc:cache:clear all", fetch(:cachetool_reset_flags)
+      Rake::Task["cachetool:run"].invoke "apc:cache:clear all", fetch(:cachetool_reset_flags)
     end
     if [:all, :opcache].include? fetch(:cachetool_lib)
-      invoke "cachetool:run", "opcache:reset", fetch(:cachetool_reset_flags)
+      Rake::Task["cachetool:run"].reenable
+      Rake::Task["cachetool:run"].invoke "opcache:reset", fetch(:cachetool_reset_flags)
     end
   end
 
