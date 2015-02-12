@@ -28,7 +28,11 @@ namespace :cachetool do
   end
 
   task :reset do
-    invoke "cachetool:run", 'opcache:reset', fetch(:cachetool_reset_flags)
+    if fetch(:cachetool_lib) == :apc
+      invoke "cachetool:run", "apc:cache:clear all", fetch(:cachetool_reset_flags)
+    else
+      invoke "cachetool:run", "opcache:reset", fetch(:cachetool_reset_flags)
+    end
   end
 
   after 'deploy:symlink:release', 'cachetool:reset'
@@ -38,6 +42,7 @@ namespace :load do
   task :defaults do
     set :cachetool_reset_flags, '--fcgi'
     set :cachetool_roles, :all
+    set :cachetool_lib, :opcache
     set :cachetool_working_dir, -> { fetch(:release_path) }
     set :cachetool_download_url, "http://gordalina.github.io/cachetool/downloads/cachetool.phar"
   end
