@@ -10,13 +10,25 @@ gem 'capistrano-phpcachetool'
 ```
 
 And then execute
-    $ bundle
+```
+$ bundle
+```
 
 Or install it yourself as:
 
-    $ gem install capistrano-phpcachetool
+```
+$ gem install capistrano-phpcachetool
+```
 
 ## Usage
+
+Require the module in your Capfile:
+
+```ruby
+require 'capistrano/composer'
+```
+
+The `cachetool:reset task will run after deploy:symlink:release as part of Capistrano default deploy.
 
 ## Configuration
 
