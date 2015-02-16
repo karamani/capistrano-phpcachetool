@@ -47,3 +47,15 @@ set :cachetool_download_url, "http://gordalina.github.io/cachetool/downloads/cac
 3. Commit your changes (`git commit -am 'Add some feature'`)
 4. Push to the branch (`git push origin my-new-feature`)
 5. Create a new Pull Request
+
+## Installing composer as part of a deployment
+
+Add the following to deploy.rb to manage the installation of cachetool during deployment (cachetool.phar is install in the shared path).
+
+```ruby
+SSHKit.config.command_map[:cachetool] = "php #{shared_path.join("cachetool.phar")}"
+
+namespace :deploy do
+  after :starting, 'cachetool:install_executable'
+end
+```
