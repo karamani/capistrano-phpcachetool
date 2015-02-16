@@ -1,5 +1,8 @@
 # Capistrano::Phpcachetool
 
+Cachetool support for Capistrano 3.x
+
+See: https://github.com/gordalina/cachetool
 
 ## Installation
 
