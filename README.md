@@ -13,6 +13,7 @@ gem 'capistrano-phpcachetool'
 ```
 
 And then execute
+
 ```
 $ bundle
 ```
@@ -51,7 +52,7 @@ set :cachetool_download_url, "http://gordalina.github.io/cachetool/downloads/cac
 4. Push to the branch (`git push origin my-new-feature`)
 5. Create a new Pull Request
 
-## Installing composer as part of a deployment
+## Installing cachetool as part of a deployment
 
 Add the following to deploy.rb to manage the installation of cachetool during deployment (cachetool.phar is install in the shared path).
 
